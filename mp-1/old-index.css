@@ -1,0 +1,255 @@
+/***************************************** 
+JaStaGa CSS 
+*****************************************/
+
+
+/***************************************** 
+variables 4ez edits
+*****************************************/
+:root {
+    --dark:     #000000;    /*background*/
+    --mid:      #9292928f;    /*nav background*/
+    --bright:   #00ff15;    /*bright text*/
+    --accent:   #004506;    /*header/footer*/
+    --gutter:   16px;         /*padding/margins*/
+}
+
+
+/***************************************** 
+base styling
+*****************************************/
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background: var(--dark);
+    color: var(--bright);
+}
+
+
+/***************************************** 
+page wrapper
+*****************************************/
+#page-wrapper{
+    padding: var(--gutter);
+    max-width: 80vw;
+    /* background-color: var(--dark);  */
+    margin: var(--gutter) auto;     /* center on screen */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); */
+    box-shadow: 1px 0 10px var(--bright);
+}
+
+/* container being replaced by .layout */
+/* #container{
+    display: flex;
+    flex-direction: row;
+} */
+
+
+/***************************************** 
+header n footer
+*****************************************/
+header, footer{
+    background: var(--accent);
+    padding: var(--gutter);
+    text-align: center;
+}
+
+
+/***************************************** 
+navigation
+*****************************************/
+nav{
+    /* used a flex container instead of width bc 
+    it ensures the nav always stays at 30% of the layout width */
+    /* width: 30%; */
+    flex: 0 0 30%;        /* set to 30% of width */
+    background: var(--mid);
+    box-shadow: 1px 0 10px var(--dark);
+}
+
+nav ul{
+    /* padding-left: 0; */
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+nav li{
+    /* border: #FFCC00 3px solid;
+    background-color: #FFCC00;
+    text-align: center;
+    margin: 5% auto;
+    width: 80%; */
+    margin: var(--gutter);
+    flex: 0 0 30%;
+}
+
+nav a{
+    /* padding: 1% 2%; */
+    padding: 8px var(--gutter);
+    font-size: calc(2px + 1.5vw);
+    text-decoration: none;
+    color: var(--bright);
+    text-align: center;
+}
+
+nav a:hover, nav a:focus {      /* when mouse goes over nav links */
+    background: var(--bright);
+    color: var(--dark);
+    transition: background 0.2s, color 0.2s;
+}
+
+nav a[aria-current="page"] {        /* bold current page link */
+    font-weight: bold;
+}
+
+/***************************************** 
+main
+*****************************************/
+main{
+    /* again using flex sizing instead of height/width */
+    /* height: 100vh;
+    width: 70%;
+    background-color: #090040; */
+    flex: 0 0 70%;      /* 70% width on wide screens */
+    height: 100vh;      /* fill the viewport height */
+    /* display: flex; */
+    align-items: flex-start;
+    gap: var(--gutter);
+    padding: var(--gutter);
+    background: var(--dark);
+}
+
+/* main img{
+    max-width: 100%;
+    width: 50%; 
+    height: auto;
+    display: block;
+    margin: 0 auto var(--gutter);
+} */
+
+.intro-figure img {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+.intro-text {
+    flex: 1;
+}
+
+
+/***************************************** 
+text
+*****************************************/
+h1{
+    font-size: calc(40px + 0.5vw);
+}
+
+p, figcaption{
+    font-size: calc(16px + 0.5vw);
+    line-height: 1.5;
+    color: #eee;
+    margin-bottom: var(--gutter);
+}
+
+
+/***************************************** 
+layout
+*****************************************/
+.layout {
+    display: flex;
+    flex-wrap: nowrap;    /* allows stacking (good 4 narrow screen) */
+    align-items: flex-start;
+}
+
+
+/***************************************** 
+layout 4 smaller screens (seperate 1000px n 750px)
+*****************************************/
+@media (max-width: 1000px){
+    /* if > 1000: nav fitting adjustments */
+    main{
+        flex: 1 1 100%;
+        height: auto;
+        flex-direction: column;
+    } 
+    .intro-text{
+        margin-top: var(--gutter);
+    }
+    /* nav{
+        flex: 1 1 100%;
+    }
+    nav ul{
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    nav a {
+        font-size: calc(14px + 0.5vw);
+    }
+    nav li{
+        margin: var(--gutter) 8px;
+    } */
+}
+
+@media (max-width: 750px){
+    /* if > 750: decrease text sizes, let wrapper fill most of screen */
+    header h1 {
+        font-size: calc(32px + 0.5vw);
+    }
+    nav a {
+        font-size: calc(14px + 0.5vw);
+        padding: 6px 8px;
+    }
+    #page-wrapper  {
+        max-width: 95vw;
+    }
+}
+
+
+/***************************************** 
+calculator
+*****************************************/
+#calculator {
+  background: var(--mid);        
+  padding: var(--gutter);
+  margin: var(--gutter) auto;
+  max-width: 500px;
+  border-radius: 4px;            
+}
+
+#calculator input {
+  width: calc(50% - 12px);       /* two inputs side-by-side */
+  padding: 8px;
+  margin: 4px;
+}
+
+#calc-buttons {
+  margin-top: var(--gutter);
+}
+
+#calc-buttons button {
+  padding: 8px 12px;
+  margin: 4px;
+  font-size: calc(16px + 0.5vw);              
+  cursor: pointer;
+}
+
+#result {
+  margin-top: var(--gutter);
+  font-size: calc(18px + 0.5vw);
+  font-weight: bold;
+}
+
+/* red text whenever the result is negative */
+#result.negative {
+  color: red;
+}

@@ -1,0 +1,323 @@
+/***************************************** 
+JaStaGa CSS 
+*****************************************/
+
+/***************************************** 
+variables 4ez edits
+*****************************************/
+:root {
+    /* ORANGE N PURP */
+    /* --dark:   #3B2C35;
+    --mid:    #593C50;
+    --bright: #D8A47F;
+    --accent: #C84B31; */
+
+    /* CREAM */
+    /* --dark:   #42342A;
+    --mid:    #8E7D6E;
+    --bright: #EDE4E0;
+    --accent: #C19A65; */
+
+    /* RED N BLACK */
+    /* --dark:   #000000;
+    --mid:    #666666;
+    --bright: #FFFFFF;
+    --accent: #FF0000; */
+
+    /* ORANGEY TEAL */
+    /* --dark:   #0B1D26;
+    --mid:    #1C3A3E;
+    --bright: #FFCB47;
+    --accent: #EB5E28;   */
+    
+    /* ORANGE N BLACK */
+    /* --dark:   #0A0908;
+    --mid:    #1A1819;
+    --bright: #F4D35E;
+    --accent: #EE964B; */
+
+    /* MINTY GREENS */
+    /* --dark:   #2F5233;
+    --mid:    #406343;
+    --bright: #F2E8CF;
+    --accent: #A5C8A1; */
+
+    /* LIGHT BLUES */
+    /* --dark:   #102A43;
+    --mid:    #243B53;
+    --bright: #BFDBF7;
+    --accent: #4895EF; */
+
+    /* BLUE N AQUA */
+    --dark:   #02111B;
+    --mid:    #03435F;
+    --bright: #76EEC6;
+    --accent: #028090;
+
+    --gutter:   16px;       /* padding/margins */
+}
+
+/***************************************** 
+base styling
+*****************************************/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Iceland", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background: var(--dark);
+    color: var(--bright);
+}
+
+/***************************************** 
+page wrapper
+*****************************************/
+#page-wrapper {
+    padding: var(--gutter);
+    max-width: 80vw;
+    margin: var(--gutter) auto;
+    box-shadow: 1px 0 10px var(--bright);
+}
+
+/***************************************** 
+header & footer
+*****************************************/
+header,
+footer {
+    background: var(--accent);
+    padding: var(--gutter);
+    text-align: left;    
+}
+
+/***************************************** 
+navigation
+*****************************************/
+nav {
+    flex: 0 0 30%;       /* 30% width on large screens */
+    background: var(--mid);
+    box-shadow: 1px 0 10px var(--dark);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin: 0;
+}
+
+nav li {
+    margin: var(--gutter);
+}
+
+nav a {
+    display: block;
+    padding: 8px var(--gutter);
+    font-size: calc(14px + 0.5vw);
+    text-decoration: none;
+    color: var(--bright);
+    text-align: center;
+}
+
+nav a:hover,
+nav a:focus {
+    background: var(--bright);
+    color: var(--dark);
+    transition: background 0.2s, color 0.2s;
+}
+
+nav a[aria-current="page"] {
+    font-weight: bold;
+    color: white;
+}
+
+/***************************************** 
+layout
+*****************************************/
+.layout {
+    display: flex;
+    flex-wrap: nowrap;       /* keep nav + main side-by-side */
+    align-items: flex-start; /* prevent stretching */
+}
+
+/***************************************** 
+main
+*****************************************/
+main {
+    flex: 0 0 70%;           /* 70% width on large screens */
+    min-height: 100vh;           /* fill full viewport height */
+    padding: var(--gutter);
+    background: var(--dark);
+}
+
+.intro {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--gutter);
+}
+
+/***************************************** 
+intro inside main
+*****************************************/
+.intro-figure img {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+.intro-text {
+    flex: 1;                 /* fill remaining space */
+}
+
+/***************************************** 
+typography
+*****************************************/
+h1 {
+    font-size: calc(40px + 0.5vw);
+}
+
+p,
+figcaption {
+    font-size: calc(12px + 0.5vw);
+    line-height: 1.5;
+    color: #eee;
+    margin-bottom: var(--gutter);
+}
+
+/***************************************** 
+responsive @1000px
+*****************************************/
+@media (max-width: 1000px) {
+    /* main becomes full-width and stacks its content */
+    main {
+        flex: 1 1 100%;
+        height: auto;
+        flex-direction: column;
+    }
+    .intro-text {
+        margin-top: var(--gutter);
+    }
+}
+
+/***************************************** 
+responsive @750px
+*****************************************/
+@media (max-width: 750px) {
+    /* stack nav above main on narrow screens */
+    .layout {
+        flex-direction: column;
+    }
+    /* header centered on mobile */
+    header {
+        text-align: center;
+    }
+    header h1 {
+        font-size: calc(32px + 0.5vw);
+    }
+    /* nav becomes full-width and horizontal */
+    nav {
+        flex: 1 1 100%;
+    }
+    nav ul {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    nav li {
+        margin: var(--gutter) 8px;
+    }
+    nav a {
+        font-size: calc(14px + 0.5vw);
+        padding: 6px 8px;
+    }
+    /* wrapper almost full-screen on narrow devices */
+    #page-wrapper {
+        max-width: 95vw;
+    }
+    .intro {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .intro-text {
+        width: 100%;
+        padding-top: var(--gutter);
+    }
+    .intro-figure, .intro-text{
+        flex: none;
+    }
+}
+
+/***************************************** 
+calculator styles
+*****************************************/
+#calculator {
+    background: var(--mid);
+    padding: var(--gutter);
+    margin: var(--gutter) auto;
+    max-width: 500px;
+    border-radius: 4px;
+}
+
+#calculator input {
+    width: calc(50% - 12px);
+    padding: 8px;
+    margin: 4px;
+}
+
+#calc-buttons {
+    margin-top: var(--gutter);
+}
+
+#calc-buttons button {
+    padding: 8px 12px;
+    margin: 4px;
+    font-size: calc(16px + 0.5vw);
+    cursor: pointer;
+}
+
+#result {
+    margin-top: var(--gutter);
+    font-size: calc(18px + 0.5vw);
+    font-weight: bold;
+}
+
+/* red text whenever the result is negative */
+#result.negative {
+    color: red;
+}
+
+/* ---------------------------------------------
+   contact section (full-width, centered)
+----------------------------------------------- */
+.contact-section {
+  background: var(--accent);
+  padding: var(--gutter);
+  margin: var(--gutter) auto;
+  max-width: 80vw;         /* match wrapper width */
+  border-radius: 4px;
+  text-align: center;
+}
+
+.contact-section h2 {
+  font-size: calc(14px + 0.5vw);
+  margin-bottom: 0.5em;
+}
+
+.contact-section p {
+  font-size: calc(10px + 0.5vw);
+  margin: 0.25em 0;
+}
+
+.contact-section a {
+  color: var(--bright);
+  text-decoration: underline;
+}
